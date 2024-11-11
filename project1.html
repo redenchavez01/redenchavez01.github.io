@@ -1,252 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to my Website</title>
-  <style>
-    /* General styles */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: linear-gradient(270deg, #a2c2e0, #d9e7f3);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite; /* Animation for gradient */
-      color: #333; /* Darker text for contrast */
-    }
-
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header {
-      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-      color: #333;
-      padding: 20px;
-      width: 100%;
-      text-align: center; /* Centered header text */
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center; /* Centered navigation */
-    }
-
-    nav ul li {
-      margin: 0 20px; /* Spacing between navigation items */
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #333; /* Darker link color */
-    }
-
-    main {
-      display: flex;
-      flex-direction: column; /* Stack sections vertically */
-      align-items: center; /* Center sections */
-      width: 100%;
-      padding: 40px;
-      max-width: 1200px; /* Max width for larger screens */
-      margin: 0 auto; /* Center main content */
-    }
-
-    section {
-      margin-bottom: 40px;
-      flex: 1; /* Allow sections to grow */
-      background: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
-      border-radius: 10px; /* Rounded corners */
-      padding: 20px; /* Padding inside sections */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-      width: 100%; /* Full width for sections */
-      max-width: 800px; /* Max width for sections */
-    }
-
-    .image-container {
-      width: 100%; /* Make image container full width */
-      max-width: 600px; /* Set a max width for the image */
-      perspective: 1000px; /* Perspective for 3D effect */
-      margin: 20px auto; /* Center image with margin */
-    }
-
-    .image-wrapper {
-      position: relative; /* For positioning child elements */
-      overflow: hidden; /* Clip overflowing image */
-      border-radius: 10px; /* Rounded corners */
-      transition: transform 0.3s ease; /* Transition for 3D effect */
-    }
-
-    .image-wrapper img {
-      width: 100%;
-      height: auto; /* Keep the aspect ratio */
-      transition: transform 0.3s ease; /* Smooth transition for 3D effect */
-    }
-
-    .image-wrapper:hover img {
-      transform: translateZ(30px) rotateY(10deg); /* 3D hover effect */
-    }
-
-    .project-container {
-      display: flex;
-      flex-wrap: wrap; /* Allow wrapping for smaller screens */
-      justify-content: center; /* Center project cards */
-    }
-
-    .project {
-      width: 100%; /* Full width on small screens */
-      max-width: 300px; /* Set a max width for larger screens */
-      margin: 10px; /* Spacing between project cards */
-    }
-
-    /* 3D Button Effects */
-    .card {
-      width: 100%;
-      margin-bottom: 30px;
-      position: relative;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease-in-out;
-      background: #fff; /* White background for cards */
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card h3 {
-      margin: 10px 0;
-      text-align: center; /* Centered text */
-    }
-
-    .card p {
-      margin-bottom: 10px;
-      text-align: center; /* Centered text */
-    }
-
-    .card:hover {
-      transform: scale(1.05); /* Subtle hover zoom */
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent footer */
-      color: #333;
-      width: 100%;
-    }
-
-    /* Responsive Design */
-    @media only screen and (max-width: 768px) {
-      main {
-        flex-direction: column; /* Stack sections on smaller screens */
-        align-items: center; /* Center sections horizontally */
-      }
-
-      section {
-        margin-right: 0; /* Remove margin for smaller screens */
-        margin-bottom: 20px; /* Adjust bottom margin */
-        width: 100%; /* Full width for smaller screens */
-      }
-
-      .project-container {
-        flex-direction: column; /* Stack project cards vertically on small screens */
-        align-items: center; /* Center project cards */
-      }
-
-      .image-container {
-        margin-left: 0; /* Reset margin for smaller screens */
-        margin-top: 20px; /* Add margin at the top */
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switzerland</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        header {
+            background-color: #6e2235;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-img-top {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery-item {
+            margin: 10px;
+            width: 250px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to my Website</h1>
-    <nav>
-      <ul>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <div class="image-container">
-      <div class="image-wrapper">
-        <img src="439332576_276632882188460_9044996683273570528_n.jpg" alt="Your Image">
-      </div>
-    </div>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project-container">
-        <div class="project card">
-         <a href="project1.html" class="card project1"> <img src="" class="card-img-top" alt="">
-            <div class="card-body">
-                <h5 class="card-title">Project 1</h5>
+    <header>
+        <h1 class="display-4">Switzerland</h1>
+    </header>
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <h2>Tourist Spots</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="img/swissmountain.webp" alt="Swiss Mountain">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/swisslake.jpg" alt="Swiss Lake">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/swisscity.jpg" alt="Swiss City">
+                    </div>
+                </div>
             </div>
-        </a>
-
+            <div class="col-md-12 mb-4">
+                <h2>Foods</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="img/swisscheese.jpg" alt="Swiss Cheese">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/swisschocolate.jpg" alt="Swiss Chocolate">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/swissfondue.jpg" alt="Swiss Fondue">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <h2>Habits of the People</h2>
+                <p>Swiss people are known for their punctuality, efficiency, and love for nature. They are also very welcoming and friendly to tourists.</p>
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="img/swisspeople.jpg" alt="Swiss People">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <h2>Community</h2>
+                <p>Switzerland has a strong sense of community, with people taking pride in their local traditions and customs. They are also very active in their communities, volunteering their time and resources to support local initiatives.</p>
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="img/swisscity.jpg" alt="Swiss Community">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project card">
-          <img src="project2.jpg" alt="">
-          <h3>Project Title 2</h3>
-          <p></p>
-          <a href="project2.html"></a>
-        </div>
-        <div class="project card">
-          <img src="project3.jpg" alt="">
-          <h3>Project Title 3</h3>
-          <p></p>
-          <a href="project3.html"></a>
-        </div>
-        <div class="project card">
-          <img src="project4.jpg" alt="">
-          <h3>Project Title 4</h3>
-          <p></p>
-          <a href="project4.html"></a>
-        </div>
-        <div class="project card">
-          <img src="project5.jpg" alt="">
-          <h3>Project Title 5</h3>
-          <p></p>
-          <a href="project5.html"></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <h2>About Me</h2>
-      <p>I'm a passionate IT student with a strong interest in Techonology. I love to create innovative solutions and learn new technologies.</p>
-    </section>
-  </main>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: red.montilla.chavez@gmail.com</p>
-    <p>Phone: 0948-359-3758</p>
-  </section>
-
-  <footer>
-    &copy; 2023 Reden Chavez
-  </footer>
-
-  <script>
-    // Add JavaScript for interactive elements or animations if needed
-  </script>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
