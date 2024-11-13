@@ -11,94 +11,211 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
         }
         header {
             background-color: #6e2235;
-            padding: 2rem;
+            padding: 7rem 2rem; /* Increased padding */
             text-align: center;
             color: white;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        .card {
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .main-content {
+            background-image: url('https://www.alphatrad.co.uk/sites/alphatrad.co.uk/files/styles/news_image/public/images/articles/what-are-the-languages-spoken-in-switzerland.jpg?itok=7TptHWyA');
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
-        .card-img-top {
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+        .main-content h2 {
+            font-size: 5rem; /* Increased font size */
+            margin-bottom: 20px;
+        }
+        .main-content p {
+            font-size: 2rem; /* Larger description */
+            margin-bottom: 30px;
+        }
+        .btn-explore {
+            font-size: 2rem; /* Larger font size */
+            padding: 25px 50px; /* Larger padding */
+            background-color: #6e2235;
+            color: white;
+            border: none;
+            border-radius: 15px; /* More rounded corners */
+            transition: background-color 0.3s ease;
+            text-transform: uppercase; /* Makes the text uppercase */
+        }
+        .btn-explore:hover {
+            background-color: #9a3352;
         }
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 20px; /* Adds space between the items */
         }
         .gallery-item {
-            margin: 10px;
-            width: 250px;
+            width: 32%; /* Each image takes 1/3 of the container */
         }
         .gallery-item img {
-            width: 100%;
-            height: auto;
+            width: 100%; /* Ensures responsiveness */
+            height: 250px; /* Fixed height for uniformity */
+            object-fit: cover; /* Ensures images cover the space */
             border-radius: 10px;
+        }
+        .navbar-nav a {
+            font-weight: bold;
+        }
+        section {
+            padding-top: 2rem;
+        }
+        /* Adjusted Media Queries for "Habits of the People" and "Community" sections */
+        .large-image-container {
+            text-align: center;
+            margin: 0 auto;
+        }
+        .large-image-container img {
+            width: 70%; /* Makes the image larger */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
+        }
+        /* Media queries for smaller screens */
+        @media (max-width: 767px) {
+            .gallery-item {
+                width: 100%; /* Full width for small screens */
+                max-width: 100%; /* Remove max-width on smaller screens */
+            }
+            .main-content h2 {
+                font-size: 3rem; /* Smaller font for smaller screens */
+            }
+            .main-content p {
+                font-size: 1.4rem; /* Smaller description for smaller screens */
+            }
+            .btn-explore {
+                font-size: 1.6rem; /* Smaller button font size */
+                padding: 20px 40px; /* Smaller padding */
+            }
+            .large-image-container img {
+                width: 90%; /* Full width for small screens */
+            }
+        }
+        /* Footer Styling */
+        footer {
+            background-color: #6e2235;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <!-- Main Page (Landing Page) -->
     <header>
-        <h1 class="display-4">Switzerland</h1>
-    </header>
-    <main class="container mt-4">
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                <h2>Tourist Spots</h2>
-                <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="img/swissmountain.webp" alt="Swiss Mountain">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/swisslake.jpg" alt="Swiss Lake">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/swisscity.jpg" alt="Swiss City">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 mb-4">
-                <h2>Foods</h2>
-                <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="img/swisscheese.jpg" alt="Swiss Cheese">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/swisschocolate.jpg" alt="Swiss Chocolate">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/swissfondue.jpg" alt="Swiss Fondue">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 mb-4">
-                <h2>Habits of the People</h2>
-                <p>Swiss people are known for their punctuality, efficiency, and love for nature. They are also very welcoming and friendly to tourists.</p>
-                <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="img/swisspeople.jpg" alt="Swiss People">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 mb-4">
-                <h2>Community</h2>
-                <p>Switzerland has a strong sense of community, with people taking pride in their local traditions and customs. They are also very active in their communities, volunteering their time and resources to support local initiatives.</p>
-                <div class="gallery-container">
-                    <div class="gallery-item">
-                        <img src="img/swisscity.jpg" alt="Swiss Community">
-                    </div>
-                </div>
-            </div>
+        <div class="main-content">
+            <h2>Welcome to Switzerland</h2>
+            <p class="lead">Explore the beauty of the Swiss Alps, charming cities, and world-renowned food.</p>
+            <a href="#tourist-spots" class="btn-explore">Explore Now</a>
         </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6e2235;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#tourist-spots">Tourist Spots</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#foods">Foods</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#habits">Habits of the People</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#community">Community</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        <!-- Tourist Spots Section -->
+        <section id="tourist-spots" class="mb-4">
+            <h2>Tourist Spots</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://www.alpsinsight.com/wp-content/uploads/2016/02/13SPcy0360.jpg" alt="Swiss Mountain">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.holidayhamster.co.uk/wp-content/uploads/Oberhofen-Castle-at-Lake-Thunersee-in-swiss-Alps-Switzerland.-Schloss-Oberhofen-on-the-Lake-Thun-Thunersee-in-Bern-Canton-of-Switzerland.jpg" alt="Swiss Lake">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://media.istockphoto.com/id/523202645/photo/zurich-cityscape-switzerland.jpg?s=612x612&w=0&k=20&c=3e9ECIPcTSQIVglpeaCQTICvVXKHxXcLYugi2FJC8Hw=" alt="Swiss City">
+                </div>
+            </div>
+        </section>
+
+        <!-- Foods Section -->
+        <section id="foods" class="mb-4">
+            <h2>Foods</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://www.iamexpat.ch/sites/default/files/styles/ogimage_thumb/public/world_cheese_awards_switzerland_2023.jpg" alt="Swiss Cheese" class="img-fluid">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://patch.com/img/cdn/users/221557/2016/01/raw/201601569fc6260fa7c.jpg" alt="Swiss Chocolate" class="img-fluid">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5c34c0e8c3c16a35b17c8e2d/1642593741272-IL4YLDWISRVWC05HVQ42/clodagh.jpg" alt="Swiss Fondue" class="img-fluid">
+                </div>
+            </div>
+        </section>
+
+        <!-- Habits of the People Section -->
+        <section id="habits" class="mb-4">
+            <h2>Habits of the People</h2>
+            <p>Swiss people are known for their punctuality, efficiency, and love for nature. They are also very welcoming and friendly to tourists.</p>
+            <div class="large-image-container">
+                <img src="https://www.expatservices.ch/img/c/1644592020-ihsan-ulusoy--OBbRJzs1ds-unsplash.jpg" alt="Swiss People">
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="mb-4">
+            <h2>Community</h2>
+            <p>Switzerland has a strong sense of community, with people taking pride in their local traditions and customs. They are also very active in their communities, volunteering their time and resources to support local initiatives.</p>
+            <div class="large-image-container">
+                <img src="https://c8.alamy.com/comp/J76TAD/switzerland-community-village-market-town-switzerland-community-village-J76TAD.jpg" alt="Swiss Community">
+            </div>
+        </section>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Switzerland Tourism. All rights reserved. <br>Visit us at <a href="https://www.myswitzerland.com" target="_blank">myswitzerland.com</a></p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
