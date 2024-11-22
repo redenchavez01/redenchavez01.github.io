@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Agents</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for styling -->
+    <style>
+        body {
+            background-image: url('val.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white; /* Text color to contrast with the background */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .role-button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        /* Transparent card container (gallery) */
+        .agent-card {
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .agent-img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .role-title {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .role-button {
+            margin: 5px;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .agent-card .card-body {
+            text-align: center;
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .card-body .btn {
+            margin-top: 10px;
+        }
+
+        .btn-secondary {
+            background-color: #007bff;
+            border-color: #5b6269;
+        }
+
+        .btn-secondary:hover {
+            background-color: #0056b3;
+            border-color: #5b6269;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        /* 3D box effect */
+        .agent-card .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .agent-card .card:hover {
+            transform: translateY(-10px) rotateY(10deg); /* Slight tilt for 3D effect */
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-body .btn {
+            background-color: rgba(98, 108, 119, 0.8); /* Slight transparency for buttons */
+        }
+
+        /* Hover effect for agents */
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Valorant Agents</h1>
+
+        <!-- Role Filter Buttons -->
+        <div class="role-button-container">
+            <button class="btn btn-primary role-button" onclick="filterByRole('All')">All Agents</button>
+            <!-- Buttons will be dynamically generated for each role -->
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row justify-content-center search-bar">
+            <div class="col-12 col-md-8">
+                <input id="search" class="form-control" type="text" placeholder="Search agents..." />
+            </div>
+        </div>
+
+        <!-- Agent Cards Section -->
+        <div id="role-sections" class="row">
+            <!-- Agents will be listed under their respective roles -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- API Fetch and Search Script -->
+    <script>
+        const apiUrl = 'https://valorant-api.com/v1/agents';
+
+        let agents = [];
+
+        // Fetch agents from API
+        async function fetchAgents() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                agents = data.data;
+                // Filter out "Unclassified" agents before displaying
+                agents = agents.filter(agent => agent.role && agent.role.displayName !== 'Unclassified');
+                displayAgents(agents);
+                createRoleButtons(agents);
+            } catch (error) {
+                console.error("Error fetching agents:", error);
+            }
+        }
+
+        // Group agents by role
+        function groupByRole(agents) {
+            return agents.reduce((acc, agent) => {
+                const role = agent.role ? agent.role.displayName : 'Unclassified';
+                if (!acc[role]) acc[role] = [];
+                acc[role].push(agent);
+                return acc;
+            }, {});
+        }
+
+        // Display agents in their respective roles
+        function displayAgents(agents) {
+            const roleSections = document.getElementById('role-sections');
+            roleSections.innerHTML = ''; // Clear previous content
+
+            const groupedAgents = groupByRole(agents);
+
+            // Loop through each role and create a section for it
+            for (const role in groupedAgents) {
+                if (role === 'Unclassified') continue; // Skip "Unclassified" role
+
+                const roleTitle = `<h3 class="role-title">${role}</h3>`;
+                const agentCards = groupedAgents[role].map(agent => `
+                    <div class="col-12 col-md-4 agent-card">
+                        <div class="card">
+                            <img class="card-img-top agent-img" src="${agent.displayIcon}" alt="${agent.displayName}">
+                            <div class="card-body">
+                                <h5 class="card-title">${agent.displayName}</h5>
+                                <a href="view.html?id=${agent.uuid}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                roleSections.innerHTML += `<div class="col-12">${roleTitle}</div><div class="row">${agentCards}</div>`;
+            }
+        }
+
+        // Create role filter buttons dynamically
+        function createRoleButtons(agents) {
+            const roleButtonContainer = document.querySelector('.role-button-container');
+            const groupedAgents = groupByRole(agents);
+
+            // Create a button for each role (excluding "Unclassified")
+            for (const role in groupedAgents) {
+                if (role === 'Unclassified') continue; // Skip "Unclassified" role
+
+                const button = document.createElement('button');
+                button.classList.add('btn', 'btn-outline-primary', 'role-button');
+                button.innerText = role;
+                button.onclick = () => filterByRole(role);
+                roleButtonContainer.appendChild(button);
+            }
+        }
+
+        // Filter agents by selected role
+        function filterByRole(role) {
+            if (role === 'All') {
+                displayAgents(agents); // Show all agents
+            } else {
+                const filteredAgents = agents.filter(agent => agent.role && agent.role.displayName === role);
+                displayAgents(filteredAgents);
+            }
+        }
+
+        // Implement search functionality
+        document.getElementById('search').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const filteredAgents = agents.filter(agent => agent.displayName.toLowerCase().includes(searchTerm));
+            displayAgents(filteredAgents);
+        });
+
+        // Initialize the page by fetching agents
+        fetchAgents();
+    </script>
+</body>
+
+</html>

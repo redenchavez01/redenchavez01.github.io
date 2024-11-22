@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Details - Valorant</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('val.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .agent-img {
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.5); /* 50% transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .agent-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .abilities-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .abilities-list li {
+            margin-bottom: 10px;
+        }
+
+        .btn-secondary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="agent-header">
+            <img id="agent-img" class="agent-img" src="" alt="Agent Image">
+            <h1 id="agent-name"></h1>
+            <p id="agent-role" class="lead"></p>
+            <p id="agent-description"></p>
+        </div>
+
+        <h3>Abilities</h3>
+        <ul id="abilities-list" class="abilities-list">
+            <!-- Agent abilities will be inserted here -->
+        </ul>
+        <a href="index.html" class="btn btn-secondary">Back to Agents</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const apiUrl = 'https://valorant-api.com/v1/agents/';
+
+        async function fetchAgentDetails(id) {
+            try {
+                const response = await fetch(apiUrl + id);
+                const data = await response.json();
+                displayAgentDetails(data.data);
+            } catch (error) {
+                console.error("Error fetching agent details:", error);
+            }
+        }
+
+        function displayAgentDetails(agent) {
+            document.getElementById('agent-name').innerText = agent.displayName;
+            document.getElementById('agent-role').innerText = agent.role ? agent.role.displayName : 'Unclassified';
+            document.getElementById('agent-description').innerText = agent.description;
+            document.getElementById('agent-img').src = agent.fullPortrait;
+
+            const abilitiesList = document.getElementById('abilities-list');
+            abilitiesList.innerHTML = agent.abilities.map(ability => `
+                <li><strong>${ability.displayName}</strong>: ${ability.description}</li>
+            `).join('');
+        }
+
+        // Get the agent ID from the URL parameters and fetch the agent details
+        const urlParams = new URLSearchParams(window.location.search);
+        const agentId = urlParams.get('id');
+        if (agentId) {
+            fetchAgentDetails(agentId);
+        } else {
+            alert("No agent ID found!");
+        }
+    </script>
+</body>
+
+</html>
